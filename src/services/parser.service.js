@@ -34,3 +34,20 @@ export const parseHtmlBOJ = (html) => {
 const getText = (div) => {
   return div?.textContent.trim() || "No Description";
 };
+
+export const parseRelatedProblem = (html) => {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+
+  const problemIds = Array.from(
+    document.querySelectorAll(".list_problem_id")
+  ).map((element) => element.textContent.trim());
+
+  const randomProblems = problemIds
+    .sort(() => Math.random() - 0.5) // 배열 랜덤 정렬
+    .slice(0, 5); // 첫 5개 선택
+
+  console.log("🥕🥕🥕 랜덤 문제 리스트: ", randomProblems);
+
+  return randomProblems;
+};
