@@ -2,13 +2,13 @@ import { parseHtmlBOJ } from "../services/parser.service.js";
 import { problemAnalysis } from "../services/analyzer.service.js";
 
 // 문제 받아오기 및 OpenAI API 요청 처리
-export const processProblem = async (html) => {
+export const processProblem = async (html, tag_name) => {
   try {
     // 문제 텍스트 추출
     const data = parseHtmlBOJ(html);
 
     // OpenAI API 요청
-    const analysis = await problemAnalysis(data);
+    const analysis = await problemAnalysis(data, tag_name);
     console.log(`🥕🥕🥕 OpenAI API 요청 완료 🥕🥕🥕`);
 
     return analysis;
