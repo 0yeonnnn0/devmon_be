@@ -12,29 +12,31 @@ export const parseHtmlBOJ = (html) => {
   const descriptionDiv = document.querySelector("#problem_description");
   const inputDiv = document.querySelector("#problem_input");
   const outputDiv = document.querySelector("#problem_output");
+  const limitDiv = document?.querySelector("#problem_limit");
   const exampleInputDiv = document.querySelector("#sample-input-1");
   const exampleOutputDiv = document.querySelector("#sample-output-1");
 
-  const descriptionText = getText(descriptionDiv);
-  const inputText = getText(inputDiv);
-  const outputText = getText(outputDiv);
-  const exampleInputText = getText(exampleInputDiv);
-  const exampleOutputText = getText(exampleOutputDiv);
   // 결과 확인
   console.log("🥕🥕🥕 파싱된 데이터:", {
     title,
   });
 
-  return {
+  const result = {
     title,
-    description: descriptionText,
-    input: inputText,
-    output: outputText,
+    description: getText(descriptionDiv) || "",
+    input: getText(inputDiv) || "",
+    output: getText(outputDiv) || "",
     example: {
-      input: exampleInputText,
-      output: exampleOutputText,
+      input: getText(exampleInputDiv) || "",
+      output: getText(exampleOutputDiv) || "",
     },
   };
+
+  if (limitDiv) {
+    result.limit = getText(limitDiv);
+  }
+
+  return result;
 };
 
 // HTML 데이터에서 텍스트만 가져옴
