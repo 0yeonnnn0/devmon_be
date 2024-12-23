@@ -13,7 +13,7 @@ export const problemAnalysis = async (question, tag_name) => {
 You are a programming expert dedicated to assisting educators who are teaching programming to beginners. When provided with a coding test question, you MUST deliver a JSON-formatted response that includes ALL of the following:
 {
   "required_algorithm": ${tag_name},
-  "key_concepts": "A broader step-by-step explanation of theoretical concepts required for solving the problem.",
+  "key_concepts": "Please briefly explain the required_algorithm.",
   "solution_approach": "A clear, step-by-step explanation of the reasoning and strategy behind solving the problem. Focus on why this approach is suitable. Use Chain-of-Thought to explain the process logically.",
   "solution": {
     "pseudo_code": Pseudocode is an informal way to describe an algorithm. Please follow these rules:
@@ -62,7 +62,7 @@ Here is an example of the response format:
 Example 1:
 {
   "required_algorithm": "다이나믹 프로그래밍",
-  "key_concepts": "이 문제는 최소 연산 횟수를 구하는 데 있어서 동적 프로그래밍의 개념을 활용합니다. 주어진 정수 N에서 1로 만들기 위해 각 연산의 결과를 저장하고, 이를 기반으로 최적의 해를 계산하는 방식입니다. 이전 상태의 결과를 활용하여 현재 상태를 업데이트하는 것이 핵심입니다.",
+  "key_concepts": "다이나믹 프로그래밍(DP)은 문제를 더 작은 하위 문제로 나누어 각 하위 문제를 한 번만 해결하고 그 결과를 저장하여 미래에 재사용하는 방법입니다. 이 기법은 겹치는 하위 문제를 통해 해결할 수 있는 최적화 문제에 특히 유용합니다. DP는 이전에 계산된 결과를 저장하는 테이블이나 메모이제이션을 사용하여 중복 계산을 줄이고 효율성을 향상시킵니다.",
   "solution_approach": "이 문제는 DP 테이블을 사용하여 각 숫자에 대해 최소 연산 횟수를 저장합니다. 초기 상태(1)에서 시작하여 주어진 숫자 N까지 계산하는 방식으로 진행됩니다. 단계적으로 다음과 같은 방식으로 접근합니다:\\n\\n1. DP 테이블 초기화: dp[0]부터 dp[N]까지의 배열을 생성하고, dp[1]은 0으로 초기화합니다. 이는 1에 도달하는 데 필요한 연산 횟수가 없음을 의미합니다.\\n2. 연산 적용: 2부터 N까지 각 숫자에 대해, 가능한 연산을 적용하여 dp 값을 업데이트합니다. 이를 통해 각 숫자에 도달하는 데 필요한 최소 연산 횟수를 계산합니다.\\n3. 최종 값 반환: dp[N]을 출력하여 N을 1로 만들기 위한 최소 연산 횟수를 확인합니다.",
   "solution": {
     "pseudo_code": "Set N = INPUT value // 정수 N\\nCreate an array dp of size N+1\\nSet dp[1] = 0 // 1로 만들기 위한 연산 횟수 초기화\\nFOR i from 2 to N\\n\\tSet dp[i] = dp[i-1] + 1 // 1을 빼는 경우\\n\\tIF (i % 2 == 0)\\n\\t\\tSet dp[i] = MIN(dp[i], dp[i // 2] + 1) // 2로 나누는 경우\\n\\tIF (i % 3 == 0)\\n\\t\\tSet dp[i] = MIN(dp[i], dp[i // 3] + 1) // 3으로 나누는 경우\\nOUTPUT dp[N]",
@@ -74,7 +74,7 @@ Example 1:
 Example 2:
 {
   "required_algorithm": "기하학",
-  "key_concepts": "이 문제를 해결하기 위해서는 기하학적 개념, 특히 원과 점의 관계를 이해해야 합니다. 주어진 출발점과 도착점이 각 행성계의 경계에 위치하는지를 판단하고, 이를 통해 진입 및 이탈 횟수를 계산해야 합니다. 원의 중심과 반지름을 이용해 점이 원 안에 있는지, 바깥에 있는지를 확인하는 방법을 이해해야 합니다.",
+  "key_concepts": "기하학은 도형, 크기, 도형의 상대적인 위치, 그리고 공간의 성질에 대해 다루는 수학의 한 분야입니다. 점, 선, 각, 면, 입체와 같은 개념을 포함하며, 기하학 알고리즘은 기하학적 객체의 측정, 배치 및 분석과 관련된 문제를 해결하는 데 사용됩니다.",
   "solution_approach": "이 문제는 각 행성계에 대해 출발점과 도착점의 위치를 비교하여 진입 및 이탈 횟수를 계산하는 기하학 문제입니다. 단계적으로 다음과 같은 방식으로 접근합니다:\\n\\n1. 거리 계산 함수 정의: 점과 원의 중심 사이의 거리를 계산하는 함수를 정의합니다. 이 함수는 두 점 사이의 유클리드 거리로 계산됩니다.\\n2. 각 테스트 케이스에 대한 입력 처리: 출발점, 도착점, 행성계의 수를 입력받고, 각 행성계의 중심 좌표와 반지름을 저장합니다.\\n3. 진입 및 이탈 여부 판단: 행성계의 중심과 반지름을 기준으로 출발점과 도착점이 원 안에 있는지 판단합니다.\\n    - 출발점이 원 안에 있고, 도착점이 원 밖에 있는 경우: 진입으로 판단하여 횟수를 증가시킵니다.\\n    - 출발점이 원 밖에 있고, 도착점이 원 안에 있는 경우: 이탈로 판단하여 횟수를 증가시킵니다.\\n4. 최종 결과 출력: 모든 테스트 케이스에 대해 진입 및 이탈 횟수의 합을 계산하여 출력합니다.",
   "solution": {
     "pseudo_code": "Set T = INPUT value // 테스트 케이스 수\\nFOR each test case\\n\\tINPUT (x1, y1) // 출발점\\n\\tINPUT (x2, y2) // 도착점\\n\\tINPUT n // 행성계 수\\n\\tSet count = 0 // 진입/이탈 횟수 초기화\\n\\tFOR each planet\\n\\t\\tINPUT (cx, cy, r) // 행성계의 중심과 반지름\\n\\t\\tSet distance_start = distance(x1, y1, cx, cy)\\n\\t\\tSet distance_end = distance(x2, y2, cx, cy)\\n\\t\\tIF (distance_start < r AND distance_end >= r) THEN // 출발점이 원 안, 도착점이 원 밖\\n\\t\\t\\tcount += 1\\n\\t\\tELSE IF (distance_start >= r AND distance_end < r) THEN // 출발점이 원 밖, 도착점이 원 안\\n\\t\\t\\tcount += 1\\nOUTPUT count",
@@ -103,7 +103,7 @@ Example 2:
 Example 1:
 {
   "required_algorithm": "다이나믹 프로그래밍",
-  "key_concepts": "이 문제는 최소 연산 횟수를 구하는 데 있어서 동적 프로그래밍의 개념을 활용합니다. 주어진 정수 N에서 1로 만들기 위해 각 연산의 결과를 저장하고, 이를 기반으로 최적의 해를 계산하는 방식입니다. 이전 상태의 결과를 활용하여 현재 상태를 업데이트하는 것이 핵심입니다.",
+  "key_concepts": "다이나믹 프로그래밍(DP)은 문제를 더 작은 하위 문제로 나누어 각 하위 문제를 한 번만 해결하고 그 결과를 저장하여 미래에 재사용하는 방법입니다. 이 기법은 겹치는 하위 문제를 통해 해결할 수 있는 최적화 문제에 특히 유용합니다. DP는 이전에 계산된 결과를 저장하는 테이블이나 메모이제이션을 사용하여 중복 계산을 줄이고 효율성을 향상시킵니다.",
   "solution_approach": "이 문제는 DP 테이블을 사용하여 각 숫자에 대해 최소 연산 횟수를 저장합니다. 초기 상태(1)에서 시작하여 주어진 숫자 N까지 계산하는 방식으로 진행됩니다. 단계적으로 다음과 같은 방식으로 접근합니다:\\n\\n1. DP 테이블 초기화: dp[0]부터 dp[N]까지의 배열을 생성하고, dp[1]은 0으로 초기화합니다. 이는 1에 도달하는 데 필요한 연산 횟수가 없음을 의미합니다.\\n2. 연산 적용: 2부터 N까지 각 숫자에 대해, 가능한 연산을 적용하여 dp 값을 업데이트합니다. 이를 통해 각 숫자에 도달하는 데 필요한 최소 연산 횟수를 계산합니다.\\n3. 최종 값 반환: dp[N]을 출력하여 N을 1로 만들기 위한 최소 연산 횟수를 확인합니다.",
   "solution": {
     "pseudo_code": "Set N = INPUT value // 정수 N\\nCreate an array dp of size N+1\\nSet dp[1] = 0 // 1로 만들기 위한 연산 횟수 초기화\\nFOR i from 2 to N\\n\\tSet dp[i] = dp[i-1] + 1 // 1을 빼는 경우\\n\\tIF (i % 2 == 0)\\n\\t\\tSet dp[i] = MIN(dp[i], dp[i // 2] + 1) // 2로 나누는 경우\\n\\tIF (i % 3 == 0)\\n\\t\\tSet dp[i] = MIN(dp[i], dp[i // 3] + 1) // 3으로 나누는 경우\\nOUTPUT dp[N]",
@@ -115,7 +115,7 @@ Example 1:
 Example 2:
 {
   "required_algorithm": "기하학",
-  "key_concepts": "이 문제를 해결하기 위해서는 기하학적 개념, 특히 원과 점의 관계를 이해해야 합니다. 주어진 출발점과 도착점이 각 행성계의 경계에 위치하는지를 판단하고, 이를 통해 진입 및 이탈 횟수를 계산해야 합니다. 원의 중심과 반지름을 이용해 점이 원 안에 있는지, 바깥에 있는지를 확인하는 방법을 이해해야 합니다.",
+  "key_concepts": "기하학은 도형, 크기, 도형의 상대적인 위치, 그리고 공간의 성질에 대해 다루는 수학의 한 분야입니다. 점, 선, 각, 면, 입체와 같은 개념을 포함하며, 기하학 알고리즘은 기하학적 객체의 측정, 배치 및 분석과 관련된 문제를 해결하는 데 사용됩니다.",
   "solution_approach": "이 문제는 각 행성계에 대해 출발점과 도착점의 위치를 비교하여 진입 및 이탈 횟수를 계산하는 기하학 문제입니다. 단계적으로 다음과 같은 방식으로 접근합니다:\\n\\n1. 거리 계산 함수 정의: 점과 원의 중심 사이의 거리를 계산하는 함수를 정의합니다. 이 함수는 두 점 사이의 유클리드 거리로 계산됩니다.\\n2. 각 테스트 케이스에 대한 입력 처리: 출발점, 도착점, 행성계의 수를 입력받고, 각 행성계의 중심 좌표와 반지름을 저장합니다.\\n3. 진입 및 이탈 여부 판단: 행성계의 중심과 반지름을 기준으로 출발점과 도착점이 원 안에 있는지 판단합니다.\\n    - 출발점이 원 안에 있고, 도착점이 원 밖에 있는 경우: 진입으로 판단하여 횟수를 증가시킵니다.\\n    - 출발점이 원 밖에 있고, 도착점이 원 안에 있는 경우: 이탈로 판단하여 횟수를 증가시킵니다.\\n4. 최종 결과 출력: 모든 테스트 케이스에 대해 진입 및 이탈 횟수의 합을 계산하여 출력합니다.",
   "solution": {
     "pseudo_code": "Set T = INPUT value // 테스트 케이스 수\\nFOR each test case\\n\\tINPUT (x1, y1) // 출발점\\n\\tINPUT (x2, y2) // 도착점\\n\\tINPUT n // 행성계 수\\n\\tSet count = 0 // 진입/이탈 횟수 초기화\\n\\tFOR each planet\\n\\t\\tINPUT (cx, cy, r) // 행성계의 중심과 반지름\\n\\t\\tSet distance_start = distance(x1, y1, cx, cy)\\n\\t\\tSet distance_end = distance(x2, y2, cx, cy)\\n\\t\\tIF (distance_start < r AND distance_end >= r) THEN // 출발점이 원 안, 도착점이 원 밖\\n\\t\\t\\tcount += 1\\n\\t\\tELSE IF (distance_start >= r AND distance_end < r) THEN // 출발점이 원 밖, 도착점이 원 안\\n\\t\\t\\tcount += 1\\nOUTPUT count",
@@ -137,7 +137,7 @@ Example 2:
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: USER_PROMPT },
       ],
-      max_tokens: 5000,
+      max_tokens: 4096,
       temperature: 0.5,
     });
 
