@@ -33,7 +33,8 @@
    - 코드 설명
    - 시간 복잡도
    - 해당 알고리즘으로 풀 수 있는 다른 문제 5가지
-     ![Devmon_demo_2](assets/images/Devmon_demo_2.gif)
+
+![Devmon_demo_2](assets/images/Devmon_demo_2.gif)
 
 ## 설치 및 실행
 
