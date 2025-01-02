@@ -21,7 +21,7 @@
 
 1. 유저는 백준 문제의 링크를 제출합니다.
 
-![Devmon_demo_1](https://github.com/user-attachments/assets/269358b2-935d-4ad4-9006-7882b3f6da00)
+![Devmon_demo_1](assets/images/Devmon_demo_1.gif)
 
 2. 문제에 대한 해설을 제공합니다.<br>
    해설 내용으로 이하 내용을 제공하고 있습니다.
@@ -33,7 +33,7 @@
    - 코드 설명
    - 시간 복잡도
    - 해당 알고리즘으로 풀 수 있는 다른 문제 5가지
-     ![Devmon_demo_2](https://github.com/user-attachments/assets/af0194d0-5d07-4634-beff-fe2f8f852646)
+     ![Devmon_demo_2](assets/images/Devmon_demo_2.gif)
 
 ## 설치 및 실행
 
