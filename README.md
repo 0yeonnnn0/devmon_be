@@ -12,8 +12,8 @@
 
 ## 팀 소개
 
-- **[김동연](https://github.com/0yeonnnn0)**: Full-Stack Developer
-- **[김민종](https://github.com/manjong-bot)**: Frontend Developer
+- **[김동연](https://github.com/0yeonnnn0)** : Full-Stack Developer
+- **[김민종](https://github.com/manjong-bot)** : Frontend Developer
 
 ## Demo 및 사용법
 
@@ -47,19 +47,25 @@ git clone https://github.com/0yeonnnn0/devmon_be
 cd devmon_be
 ```
 
-2. 필수 패키지 설치
+2. .env 생성
+
+```
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+```
+
+3. 필수 패키지 설치
 
 ```
 npm install
 ```
 
-3. 개발 서버 실행
+4. 개발 서버 실행
 
 ```
 npm start
 ```
 
-4. API 목룍 (http://localhost:8080)
+5. API 목룍 (http://localhost:8080)
 
 | HTTP Method | Endpoint | Description                             | Request Body                                     | Response                              |
 | ----------- | -------- | --------------------------------------- | ------------------------------------------------ | ------------------------------------- |
